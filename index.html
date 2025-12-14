@@ -3,45 +3,58 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Magical Realm Portfolio</title>
+    <title>Magical Portfolio</title>
     <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 </head>
 <body>
-    <header class="hero-section">
-        <h1 class="portal-title">Magical Nonsl</h1>
-        <p class="subtitle">PORTFOLIO WEBSITE</p>
-    </header>
 
-    <nav class="magical-sidebar">
-        <a href="#home" class="rune-link" id="rune-home" data-section="home">Home</a>
-        <a href="#projects" class="rune-link" id="rune-projects" data-section="projects">Projects</a>
-        <a href="#runers" class="rune-link" id="rune-runers" data-section="runers">Runers</a>
-        <a href="#about" class="rune-link" id="rune-about" data-section="about">About</a>
-        <a href="#contact" class="rune-link" id="rune-contact" data-section="contact">Contact</a>
+    <canvas id="starfield"></canvas>
+    <div id="cursor-trail"></div>
+
+    <nav class="rune-sidebar">
+        <div class="rune-item" data-target="home" onclick="castSpell('home')">
+            <div class="rune-stone"><span>🏠</span></div>
+            <p>Home</p>
+        </div>
+        <div class="rune-item" data-target="projects" onclick="castSpell('projects')">
+            <div class="rune-stone"><span>⚔️</span></div>
+            <p>Quests</p>
+        </div>
+        <div class="rune-item" data-target="skills" onclick="castSpell('skills')">
+            <div class="rune-stone"><span>📜</span></div>
+            <p>Grimoire</p>
+        </div>
+        <div class="rune-item" data-target="contact" onclick="castSpell('contact')">
+            <div class="rune-stone"><span>🔮</span></div>
+            <p>Summon</p>
+        </div>
     </nav>
 
-    <main class="magical-realm">
-        <div class="crystal-ball-container">
+    <main class="main-stage">
+        <div class="crystal-ball-wrapper" id="ballWrapper">
             <div class="crystal-ball">
-                <div class="project-preview">Projects on hover</div>
+                <div class="inner-glow"></div>
+                <div class="ball-content" id="ballContent">
+                    <h2>Welcome Traveler</h2>
+                    <p>Touch a rune to begin...</p>
+                </div>
             </div>
-            <div class="ball-stand"></div>
+            <div class="stand-shadow"></div>
+            <div class="stand-base"></div>
         </div>
+    </main>
 
-        <a href="#contact" class="potion-link">
-            <div class="potion-bottle">
-                <span class="hire-text">Hire Me</span>
+    <div class="potion-container">
+        <div class="potion-bottle">
+            <div class="liquid">
+                <div class="bubble b1"></div>
+                <div class="bubble b2"></div>
+                <div class="bubble b3"></div>
             </div>
-        </a>
-
-        <div class="magic-wand wand-top-right"></div>
-        <div class="magic-wand wand-bottom-right"></div>
-        
-        <section id="home" class="content-section active">
-            <h2>Welcome to my magical realm!</h2>
-            <p>I transform ideas into enchantment.</p>
-        </section>
-        </main>
+        </div>
+        <div class="potion-label">Hire Me</div>
+    </div>
 
     <script src="script.js"></script>
 </body>
