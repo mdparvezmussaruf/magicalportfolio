@@ -1,0 +1,233 @@
+/* style.css */
+
+/* 1. Global Styles and Background */
+:root {
+    --purple-dark: #1F0D49;
+    --purple-medium: #4A148C;
+    --purple-light: #9B59B6;
+    --gold: #FFD700;
+    --white-stars: #EAEAEA;
+    --glow-effect: 0 0 10px rgba(255, 215, 0, 0.7);
+}
+
+body {
+    background: var(--purple-dark);
+    font-family: sans-serif;
+    color: var(--white-stars);
+    margin: 0;
+    overflow: hidden; /* To keep the starry background static */
+    display: flex;
+    min-height: 100vh;
+}
+
+/* 2. Header and Title */
+.hero-section {
+    position: absolute;
+    top: 50px;
+    left: 50%;
+    transform: translateX(-50%);
+    text-align: center;
+    z-index: 10;
+}
+
+.portal-title {
+    font-family: 'Georgia', serif; /* Use a mystical font */
+    font-size: 3em;
+    color: var(--gold);
+    text-shadow: var(--glow-effect);
+}
+
+.subtitle {
+    letter-spacing: 5px;
+    margin-top: -10px;
+    opacity: 0.7;
+}
+
+/* 3. Magical Sidebar (Rune Navigation) */
+.magical-sidebar {
+    position: fixed;
+    left: 30px;
+    top: 50%;
+    transform: translateY(-50%);
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    z-index: 20;
+}
+
+.rune-link {
+    /* Base shape/look of the rune */
+    width: 60px;
+    height: 60px;
+    background: var(--purple-medium);
+    border-radius: 50%; /* Start with a circle, then customize the shape with a clip-path if needed */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--white-stars);
+    text-decoration: none;
+    transition: transform 0.3s, box-shadow 0.3s;
+    box-shadow: 0 0 15px var(--purple-light);
+    font-weight: bold;
+    font-size: 0.8em;
+    padding-top: 55px; /* Space for the rune icon/shape */
+    background-position: center 10px;
+    background-repeat: no-repeat;
+    background-size: 40px;
+}
+
+.rune-link:hover {
+    transform: scale(1.1);
+    box-shadow: 0 0 30px var(--gold);
+}
+
+/* 4. Crystal Ball Centerpiece */
+.crystal-ball-container {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 300px;
+    height: 350px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    z-index: 5;
+}
+
+.crystal-ball {
+    width: 300px;
+    height: 300px;
+    background: radial-gradient(circle at 100px 100px, rgba(255, 255, 255, 0.4), var(--purple-medium) 70%);
+    border-radius: 50%;
+    box-shadow: 0 0 50px var(--purple-light), 0 0 15px rgba(255, 255, 255, 0.5) inset;
+    border: 5px solid var(--purple-light);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    /* Add a subtle animation for a glow/breathing effect */
+}
+
+.project-preview {
+    color: var(--gold);
+    font-weight: bold;
+    text-align: center;
+    padding: 10px;
+    border: 1px solid var(--gold);
+    background: rgba(0, 0, 0, 0.5);
+    border-radius: 5px;
+}
+
+.ball-stand {
+    width: 150px;
+    height: 50px;
+    background: #6D4C3D; /* Wood-like color */
+    border-radius: 0 0 10px 10px;
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.5);
+}
+
+/* 5. Potion Bottle (Hire Me CTA) */
+.potion-link {
+    text-decoration: none;
+    position: absolute;
+    bottom: 50px;
+    right: 150px;
+    z-index: 5;
+    transition: transform 0.3s;
+}
+
+.potion-link:hover {
+    transform: translateY(-5px) scale(1.05);
+}
+
+.potion-bottle {
+    width: 100px;
+    height: 150px;
+    background: #7B1FA2; /* Potion liquid color */
+    border-radius: 50px 50px 5px 5px;
+    border: 3px solid var(--purple-light);
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+    position: relative;
+    box-shadow: 0 0 30px #A1887F, 0 0 20px #E1BEE7;
+}
+
+.potion-bottle::before {
+    content: '';
+    position: absolute;
+    top: -30px;
+    width: 40px;
+    height: 30px;
+    background: #A1887F; /* Cork */
+    border-radius: 5px;
+}
+
+.potion-bottle::after {
+    content: '';
+    position: absolute;
+    top: -60px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 20px;
+    height: 30px;
+    background: rgba(255, 255, 255, 0.3);
+    border-radius: 50%;
+    /* Smoke/Steam effect (use a dedicated div for more complex smoke animation) */
+}
+
+.hire-text {
+    color: var(--white-stars);
+    font-weight: bold;
+    padding-bottom: 10px;
+}
+
+/* 6. Wand and Other Elements (Simplified) */
+.magic-wand {
+    width: 10px;
+    height: 100px;
+    background: #C0C0C0; /* Silver stick */
+    border-radius: 5px;
+    position: absolute;
+}
+
+.magic-wand::after {
+    content: '★';
+    position: absolute;
+    top: -15px;
+    left: -15px;
+    font-size: 30px;
+    color: var(--gold);
+    text-shadow: var(--glow-effect);
+}
+
+.wand-top-right {
+    top: 150px;
+    right: 250px;
+    transform: rotate(45deg);
+}
+
+.wand-bottom-right {
+    bottom: 100px;
+    right: 200px;
+    transform: rotate(-30deg);
+}
+
+/* 7. Content Sections (Hidden by default) */
+.content-section {
+    display: none;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    padding: 20px;
+    background: rgba(0, 0, 0, 0.8);
+    border-radius: 10px;
+    width: 80%;
+    max-width: 400px;
+    z-index: 30; /* Should appear above the ball, or you can display content inside the ball */
+}
+
+.content-section.active {
+    display: block;
+}
