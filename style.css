@@ -1,233 +1,238 @@
 /* style.css */
-
-/* 1. Global Styles and Background */
 :root {
-    --purple-dark: #1F0D49;
-    --purple-medium: #4A148C;
-    --purple-light: #9B59B6;
-    --gold: #FFD700;
-    --white-stars: #EAEAEA;
-    --glow-effect: 0 0 10px rgba(255, 215, 0, 0.7);
+    --bg-deep: #0f0518;
+    --rune-color: #a742f5;
+    --rune-glow: #d69dfc;
+    --gold: #ffd700;
+    --glass: rgba(255, 255, 255, 0.1);
 }
 
 body {
-    background: var(--purple-dark);
-    font-family: sans-serif;
-    color: var(--white-stars);
     margin: 0;
-    overflow: hidden; /* To keep the starry background static */
+    overflow: hidden;
+    background: var(--bg-deep);
+    font-family: 'Cinzel', serif; /* Suggest importing a fantasy font */
+    color: white;
+    height: 100vh;
     display: flex;
-    min-height: 100vh;
+    justify-content: center;
+    align-items: center;
+    cursor: none; /* We will make a custom cursor */
 }
 
-/* 2. Header and Title */
-.hero-section {
+/* --- Dynamic Background --- */
+#starfield {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+}
+
+/* --- Magic Cursor Trail --- */
+.magic-particle {
     position: absolute;
-    top: 50px;
-    left: 50%;
-    transform: translateX(-50%);
-    text-align: center;
+    width: 6px;
+    height: 6px;
+    background: var(--gold);
+    border-radius: 50%;
+    pointer-events: none;
+    animation: fadeOut 1s forwards;
+    box-shadow: 0 0 10px var(--gold);
+    z-index: 9999;
+}
+
+@keyframes fadeOut {
+    to { opacity: 0; transform: scale(0); }
+}
+
+/* --- Rune Sidebar --- */
+.rune-sidebar {
+    position: fixed;
+    left: 40px;
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
     z-index: 10;
 }
 
-.portal-title {
-    font-family: 'Georgia', serif; /* Use a mystical font */
-    font-size: 3em;
-    color: var(--gold);
-    text-shadow: var(--glow-effect);
+.rune-item {
+    text-align: center;
+    cursor: pointer;
+    transition: transform 0.3s;
 }
 
-.subtitle {
-    letter-spacing: 5px;
-    margin-top: -10px;
-    opacity: 0.7;
+.rune-item:hover {
+    transform: scale(1.1) translateX(10px);
 }
 
-/* 3. Magical Sidebar (Rune Navigation) */
-.magical-sidebar {
-    position: fixed;
-    left: 30px;
-    top: 50%;
-    transform: translateY(-50%);
-    display: flex;
-    flex-direction: column;
-    gap: 20px;
-    z-index: 20;
-}
-
-.rune-link {
-    /* Base shape/look of the rune */
+.rune-stone {
     width: 60px;
-    height: 60px;
-    background: var(--purple-medium);
-    border-radius: 50%; /* Start with a circle, then customize the shape with a clip-path if needed */
+    height: 70px;
+    background: linear-gradient(135deg, #2a1b3d, #1a0b2e);
+    border: 2px solid var(--rune-color);
+    border-radius: 15px;
     display: flex;
-    align-items: center;
     justify-content: center;
-    color: var(--white-stars);
-    text-decoration: none;
-    transition: transform 0.3s, box-shadow 0.3s;
-    box-shadow: 0 0 15px var(--purple-light);
-    font-weight: bold;
-    font-size: 0.8em;
-    padding-top: 55px; /* Space for the rune icon/shape */
-    background-position: center 10px;
-    background-repeat: no-repeat;
-    background-size: 40px;
-}
-
-.rune-link:hover {
-    transform: scale(1.1);
-    box-shadow: 0 0 30px var(--gold);
-}
-
-/* 4. Crystal Ball Centerpiece */
-.crystal-ball-container {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    width: 300px;
-    height: 350px;
-    display: flex;
-    flex-direction: column;
     align-items: center;
-    z-index: 5;
+    box-shadow: 0 0 15px var(--rune-color);
+    position: relative;
+    overflow: hidden;
+}
+
+.rune-stone span {
+    font-size: 1.5rem;
+    z-index: 2;
+    filter: drop-shadow(0 0 5px var(--rune-glow));
+}
+
+.rune-item p {
+    margin: 5px 0 0 0;
+    font-size: 0.8rem;
+    opacity: 0;
+    transition: opacity 0.3s;
+    color: var(--gold);
+}
+
+.rune-item:hover p {
+    opacity: 1;
+}
+
+/* --- The 3D Crystal Ball --- */
+.crystal-ball-wrapper {
+    position: relative;
+    width: 400px;
+    height: 400px;
+    perspective: 1000px; /* Essential for 3D effect */
 }
 
 .crystal-ball {
     width: 300px;
     height: 300px;
-    background: radial-gradient(circle at 100px 100px, rgba(255, 255, 255, 0.4), var(--purple-medium) 70%);
+    background: radial-gradient(circle at 30% 30%, rgba(255, 255, 255, 0.1), rgba(138, 43, 226, 0.2) 60%, rgba(0, 0, 0, 0.9));
     border-radius: 50%;
-    box-shadow: 0 0 50px var(--purple-light), 0 0 15px rgba(255, 255, 255, 0.5) inset;
-    border: 5px solid var(--purple-light);
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    box-shadow: inset 0 0 50px rgba(167, 66, 245, 0.5), 0 0 60px rgba(167, 66, 245, 0.3);
     display: flex;
-    align-items: center;
     justify-content: center;
-    /* Add a subtle animation for a glow/breathing effect */
+    align-items: center;
+    overflow: hidden;
+    backdrop-filter: blur(3px);
+    border: 1px solid rgba(255,255,255,0.2);
+    transition: transform 0.1s ease-out; /* Smooth follow */
+    animation: float 6s ease-in-out infinite;
 }
 
-.project-preview {
-    color: var(--gold);
-    font-weight: bold;
+.inner-glow {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(circle, transparent 50%, #4b0082 100%);
+    mix-blend-mode: overlay;
+    z-index: 1;
+}
+
+.ball-content {
+    color: #fff;
     text-align: center;
-    padding: 10px;
-    border: 1px solid var(--gold);
-    background: rgba(0, 0, 0, 0.5);
-    border-radius: 5px;
+    z-index: 5;
+    padding: 20px;
+    opacity: 1;
+    transition: opacity 0.5s;
+    text-shadow: 0 2px 4px black;
 }
 
-.ball-stand {
-    width: 150px;
-    height: 50px;
-    background: #6D4C3D; /* Wood-like color */
-    border-radius: 0 0 10px 10px;
-    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.5);
-}
+.ball-content h2 { color: var(--gold); margin-bottom: 10px; }
 
-/* 5. Potion Bottle (Hire Me CTA) */
-.potion-link {
-    text-decoration: none;
+/* The Stand */
+.stand-base {
+    width: 160px;
+    height: 40px;
+    background: #3d1e1e;
     position: absolute;
     bottom: 50px;
-    right: 150px;
-    z-index: 5;
-    transition: transform 0.3s;
+    left: 50%;
+    transform: translateX(-50%);
+    border-radius: 50%;
+    box-shadow: 0 10px 20px black;
+}
+.stand-shadow {
+    width: 140px;
+    height: 20px;
+    background: rgba(0,0,0,0.6);
+    position: absolute;
+    bottom: 40px;
+    left: 50%;
+    transform: translateX(-50%);
+    border-radius: 50%;
+    filter: blur(5px);
 }
 
-.potion-link:hover {
-    transform: translateY(-5px) scale(1.05);
+@keyframes float {
+    0%, 100% { top: 0px; }
+    50% { top: -20px; }
 }
 
+/* --- Bubbling Potion --- */
+.potion-container {
+    position: fixed;
+    bottom: 40px;
+    right: 40px;
+    text-align: center;
+    cursor: pointer;
+}
 .potion-bottle {
-    width: 100px;
-    height: 150px;
-    background: #7B1FA2; /* Potion liquid color */
-    border-radius: 50px 50px 5px 5px;
-    border: 3px solid var(--purple-light);
-    display: flex;
-    align-items: flex-end;
-    justify-content: center;
+    width: 60px;
+    height: 80px;
+    background: rgba(255, 255, 255, 0.1);
+    border: 2px solid rgba(255, 255, 255, 0.4);
+    border-radius: 0 0 30px 30px;
     position: relative;
-    box-shadow: 0 0 30px #A1887F, 0 0 20px #E1BEE7;
+    overflow: hidden;
+    box-shadow: 0 0 15px var(--rune-color);
 }
-
+/* Neck of bottle */
 .potion-bottle::before {
     content: '';
     position: absolute;
-    top: -30px;
-    width: 40px;
-    height: 30px;
-    background: #A1887F; /* Cork */
-    border-radius: 5px;
+    top: -10px;
+    left: 15px;
+    width: 30px;
+    height: 20px;
+    background: rgba(255,255,255,0.1);
+    border: 2px solid rgba(255,255,255,0.4);
 }
 
-.potion-bottle::after {
-    content: '';
+.liquid {
     position: absolute;
-    top: -60px;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 20px;
-    height: 30px;
-    background: rgba(255, 255, 255, 0.3);
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 70%;
+    background: #ff0055;
+    box-shadow: 0 0 20px #ff0055;
+    animation: liquidColor 5s infinite alternate;
+}
+
+.bubble {
+    position: absolute;
+    background: rgba(255,255,255,0.6);
     border-radius: 50%;
-    /* Smoke/Steam effect (use a dedicated div for more complex smoke animation) */
+    animation: bubbleUp 2s infinite;
 }
+.b1 { width: 5px; height: 5px; left: 20%; animation-duration: 2.2s; }
+.b2 { width: 8px; height: 8px; left: 60%; animation-duration: 1.8s; }
+.b3 { width: 4px; height: 4px; left: 40%; animation-duration: 2.5s; }
 
-.hire-text {
-    color: var(--white-stars);
-    font-weight: bold;
-    padding-bottom: 10px;
+@keyframes bubbleUp {
+    0% { bottom: 0; opacity: 0; }
+    50% { opacity: 1; }
+    100% { bottom: 100%; opacity: 0; }
 }
-
-/* 6. Wand and Other Elements (Simplified) */
-.magic-wand {
-    width: 10px;
-    height: 100px;
-    background: #C0C0C0; /* Silver stick */
-    border-radius: 5px;
-    position: absolute;
-}
-
-.magic-wand::after {
-    content: '★';
-    position: absolute;
-    top: -15px;
-    left: -15px;
-    font-size: 30px;
-    color: var(--gold);
-    text-shadow: var(--glow-effect);
-}
-
-.wand-top-right {
-    top: 150px;
-    right: 250px;
-    transform: rotate(45deg);
-}
-
-.wand-bottom-right {
-    bottom: 100px;
-    right: 200px;
-    transform: rotate(-30deg);
-}
-
-/* 7. Content Sections (Hidden by default) */
-.content-section {
-    display: none;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    padding: 20px;
-    background: rgba(0, 0, 0, 0.8);
-    border-radius: 10px;
-    width: 80%;
-    max-width: 400px;
-    z-index: 30; /* Should appear above the ball, or you can display content inside the ball */
-}
-
-.content-section.active {
-    display: block;
+@keyframes liquidColor {
+    0% { background: #ff0055; box-shadow: 0 0 20px #ff0055; }
+    100% { background: #9d00ff; box-shadow: 0 0 20px #9d00ff; }
 }
